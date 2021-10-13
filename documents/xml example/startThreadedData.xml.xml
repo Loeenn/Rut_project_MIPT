@@ -1,0 +1,23 @@
+<root>
+    <spaths>
+        <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+            <Nitka StartTime="1634050560" type="train" priority="100" trainNumber="1">
+                <points>
+                    <vector_node name="1П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="1" />
+                    <vector_node name="1П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="1" />
+                </points>
+            </Nitka>
+        </vector_node>
+        <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+            <Nitka StartTime="1634050560" type="train" priority="100" trainNumber="2">
+                <points>
+                    <vector_node name="1П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="1" />
+                    <vector_node name="1П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="1" />
+                </points>
+            </Nitka>
+        </vector_node>
+    </spaths>
+    <stablets>
+        <vector_node name="СЛЗ_ГПЧ_ЭНХ" from="1634050560" to="1634093760" maxspeed="-1" />
+    </stablets>
+</root>

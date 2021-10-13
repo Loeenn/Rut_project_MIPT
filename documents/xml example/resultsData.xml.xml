@@ -1,0 +1,120 @@
+<root>
+    <spathsVariants>
+        <vector_node>
+            <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+                <Nitka StartTime="1634050560" type="" priority="0" trainNumber="0">
+                    <points>
+                        <vector_node name="1П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_САЛ" dt="900" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЦАЙ" dt="64" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЦАЙ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2БП_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_4-8П_ДХ2" dt="240" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_7-8П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_3-7П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДХ1" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДХ1" dt="1680" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЭНХ" dt="38112" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЭНХ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ОРХ" dt="62" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ОРХ" dt="840" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЕРО" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЕРО" dt="780" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДУЛ" dt="69" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДУЛ" dt="1860" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_СУБ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_СУБ" dt="3000" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                    </points>
+                </Nitka>
+            </vector_node>
+            <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+                <Nitka StartTime="1634050560" type="" priority="0" trainNumber="0">
+                    <points>
+                        <vector_node name="2П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_СУБ" dt="3000" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_СУБ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДУЛ" dt="1860" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДУЛ" dt="69" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЕРО" dt="780" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЕРО" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ОРХ" dt="840" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ОРХ" dt="38151" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЭНХ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЭНХ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДХ1" dt="1680" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДХ1" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_3-7П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_7-8П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_4-8П_ДХ2" dt="240" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2БП_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЦАЙ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЦАЙ" dt="64" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_САЛ" dt="900" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                    </points>
+                </Nitka>
+            </vector_node>
+        </vector_node>
+        <vector_node>
+            <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+                <Nitka StartTime="1634050560" type="" priority="0" trainNumber="0">
+                    <points>
+                        <vector_node name="1П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_САЛ" dt="900" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЦАЙ" dt="64" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЦАЙ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2БП_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_4-8П_ДХ2" dt="240" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_7-8П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_3-7П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДХ1" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДХ1" dt="1680" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЭНХ" dt="39792" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЭНХ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ОРХ" dt="62" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ОРХ" dt="840" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ЕРО" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЕРО" dt="780" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ДУЛ" dt="69" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДУЛ" dt="1860" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_СУБ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_СУБ" dt="3000" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="1П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                    </points>
+                </Nitka>
+            </vector_node>
+            <vector_node idStartTime="0" idLastPosition="0" pgStartTime="0">
+                <Nitka StartTime="1634050560" type="" priority="0" trainNumber="0">
+                    <points>
+                        <vector_node name="2П_ХОЙ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_СУБ" dt="3000" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_СУБ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДУЛ" dt="1860" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДУЛ" dt="69" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЕРО" dt="780" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЕРО" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ОРХ" dt="840" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ОРХ" dt="36471" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЭНХ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЭНХ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ДХ1" dt="1680" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДХ1" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_3-7П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_7-8П_ДХ1" dt="202" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_4-8П_ДХ2" dt="240" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2БП_ДХ2" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_ЦАЙ" dt="1560" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_ЦАЙ" dt="64" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="СЛЗ_ГПЧ_САЛ" dt="900" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                        <vector_node name="2П_САЛ" dt="60" lenght="10" weight="1000" maxspeed="80" needOnlyThisWay="0" />
+                    </points>
+                </Nitka>
+            </vector_node>
+        </vector_node>
+    </spathsVariants>
+</root>

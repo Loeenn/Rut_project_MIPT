@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as et   ##Модуль парсинга xml
 from os import listdir as ld         ##Модуль проверки файла а наличие
-import time
 
 
 def initializate_InitData(path = 'InitData.xml', silent = False):
@@ -111,15 +110,14 @@ class Pathway:
 
 
 if __name__ == '__main__':
-  x = time.time()
   initializate_InitData('C:/Users/FireStrike/PycharmProjects/pythonProject/BIGDATA/InitData.xml')
   initializate_ResultsData('C:/Users/FireStrike/PycharmProjects/pythonProject/BIGDATA/resultsData.xml')
-  print(time.time()-x)
+  print('-'*100)
   for name in nodes:
     globals()[name].statistic()
     print(name[1:], globals()[name].stats)
   print('Done, "q" for exit')
   while True:
-    if input() in ['q', 'quit', 'end', 'close']:
+    if input() in ['q', 'quit', 'end', 'close', '']:
       print('Done')
       break

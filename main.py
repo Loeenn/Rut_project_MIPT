@@ -3,14 +3,24 @@ from pathlib import Path             ##Модуль раскрытия папо�
 from os.path import getsize as gs    ##Модуль проверки рамера файла
 from time import time                ##Модуль времени
 
-config = {'default_silent': False, 'default_datareplace': True, 'default_save': False}
+config = {'default_silent': False, 'default_datareplace': False}
 nodes = []
 connections_amount = 0
 paths_amount = 0
+saves_nodes_amount = 0
+saves_tracks_amount = 0
 files_amount = [0, 0]
+prev_save_nodes_path = '/nodes0.csv'
+prev_save_tracks_path = '/tracks0.csv'
+
+def get_paths(path):
+  files = []
+  for p in Path(path).rglob('*'):
+    files.append(str(p.parent) + '/' + p.name)
+  return files
 
 def initializate_InitData(path, silent = False, datareplace = False):
-  '''Инициализация файла InitData.xml (файл с нитками и их связями). "path" - путь к файлу, "silent"(False) - тихий режим (в консоль не записывается лог), "datareplace"(True) - перезапись данных. На выходе выдает список имен ниток (nodes) (по "N" + "имя нитки" можно обращатся как к объекту класса Node), количество ниток (nodes_amount) и соединений (connection_counter).'''
+  '''Инициализация файла InitData.xml (файл с нитками и их связями). "path" - путь к файлу, "silent"(False) - тихий режим (в консоль не записывается лог), "datareplace"(True) - перезапись данных. На выходе выдает список имен ниток (nodes) ("имя нитки" можно обращатся как к объекту класса Node), количество ниток (nodes_amount) и соединений (connection_counter).'''
   global nodes, connections_amount
   try:
     start_time = time()
@@ -43,11 +53,10 @@ def initializate_InitData(path, silent = False, datareplace = False):
   except:
     print(f'Ошибка открытия: {path}')
 
-
 def initializate_ResultsData(path, silent = False):
   '''Инициализация файла resultsData.xml (файл с логами маршрутов). "path" - путь к файлу, "silent"(False) - тихий режим (в консоль не записывается лог). На выходе выдает количество маршрутов (path_counter), (по "track" + "номер(начиная с нуля)" можно обратиться как к объекту класса Pathway).'''
   global paths_amount
-  try:
+  if True:
     start_time = time()
     path_counter = 0   ##Счетчик маршрутов
     root = et.parse(path).getroot()
@@ -62,9 +71,71 @@ def initializate_ResultsData(path, silent = False):
     paths_amount += path_counter
     if silent == False:
       print(f'путей инициализировано: {path_counter}, время выполнения: {time() - start_time} с\nФайл закрыт')
-  except:
+  else:
     print(f'Ошибка открытия: {path}')
 
+def save_tracks(path, silent, datareplace):
+  global saves_tracks_amount, prev_save_tracks_path, paths_amount
+  if path == '':
+    path = prev_save_tracks_path
+  else:
+    path = path.replace('"', '')
+    if '.csv' not in path:
+      path += '.csv'
+  if datareplace == True:
+    mode = 'x'
+  else:
+    mode = 'a'
+  start_time = time()
+  amount = 0
+  try:
+    with open(path, mode, encoding='utf-8') as file:
+      for number in range(1, paths_amount + 1):
+        name = 'track' + str(number)
+        stats = [str(i) for i in globals()[name].stats.values()]
+        line = f'{name},{",".join(stats)}\n'
+        file.write(line)
+        amount += 1
+    prev_save_tracks_path = path
+    saves_tracks_amount += 1
+    if silent == False:
+      print(f'Сохранено {amount} путей')
+  except:
+    if silent == False:
+      print('Ошибка сохранения')
+
+def save_nodes(path, silent, datareplace):
+  global saves_nodes_amount, prev_save_nodes_path, nodes
+  if path == '':
+    path = prev_save_nodes_path
+  else:
+    path = path.replace('"', '')
+    if '.csv' not in path:
+      path += '.csv'
+  if datareplace == True:
+    mode = 'x'
+  else:
+    mode = 'a'
+  start_time = time()
+  amount = 0
+  try:
+    with open(path, mode, encoding='utf-8') as file:
+      for name in nodes:
+        globals()[name].statistic()
+        stats = globals()[name].stats
+        if stats == 'Нет данных':
+          line = str(name) + ','*12 + '\n'
+        else:
+          line = f'{name},{",".join([str(elem) for elem in stats.values()])}\n'
+        file.write(line)
+        amount += 1
+    prev_save_nodes_path = path
+    saves_nodes_amount += 1
+    if silent == False:
+      print(f'Сохранено {amount} ниток')
+  except:
+    if silent == False:
+      print('Ошибка сохранения')
 
 class Commands:
 
@@ -75,11 +146,8 @@ class Commands:
     if '.xml' in path:
       files_path = [path]
     else:
-      files = []
-      for p in Path(path).rglob('*'):
-        files.append(str(p.parent) + '/' + p.name)
-      files_path = list(filter(lambda x: '.xml' in x, files))
-    for file in files_path:
+      files = list(filter(lambda x: '.xml' in x, get_paths(path)))
+    for file in files:
       if 'init' in file.lower():
         init_path.append(file)
       elif 'result' in file.lower():
@@ -111,6 +179,12 @@ class Commands:
         if silent == False:
           print(name, 'не определена')
 
+  def stattracks(data, silent):
+    global paths_amount
+    for name in ['track' + str(i) for i in range(1, paths_amount+1)]:
+      if silent == False:
+        print(name, globals()[name].stats)
+
   def info(data):
     for i in data:
       print(globals()[i])
@@ -123,18 +197,13 @@ class Commands:
       silent = True
     else:
       silent = config['default_silent']
-    if '/save' == data[:5]:
-      data = data[6:]
-      save = True
-    else:
-      save = config['default_save']
     if '/datareplace' == data[:12]:
       datareplace = True
       data = data[13:]
     else:
-      datareplce = config['default_datareplace']
+      datareplace = config['default_datareplace']
     if '/help' == data[:5]:
-      print(f'Словарь команд:\n/help - помощь\n/statistic - общая статистика по программе\n/info [имя нитки/маршрута(например: "track23")/пусто(все)] - информация\n/statnodes [имя нитки/пусто(все)] - статистика нитки(ок)\n/checknodes [имя нитки/пусто(все)] - проверяет нитку на ошибки\n[путь к файлу/папке] - инициализация файлов\n/q - закрыть программу\nМожно указывать несколько значений(имен) через пробел\nДобавочные команды:\n/silent (по умолчанию: {config["default_silent"]})- выполнение команд без записи логов в консоль\n/datareplace (по умолчанию {config["default_datareplace"]})  - замена значений ниток при инициализации файлов')
+      print(f'Словарь команд:\n/help - помощь\n/statistic - общая статистика по программе\n/info [имя нитки/маршрута(например: "track23")/пусто(все)] - информация\n/statnodes [имя нитки/пусто(все)] - статистика нитки(ок)\n/stattracks [имя пути/пусто(все)] - статистика пути(ей)\n/checknodes [имя нитки/пусто(все)] - проверяет нитку на ошибки\n/savenodes [имя файла] - сохраняет статистику по всем ниткам в таблицу.csv\n/savetracks [имя файла] - сохраняет статистику по всем путям в таблицу.csv\n[путь к файлу/папке] - инициализация файлов\n/q - закрыть программу\nМожно указывать несколько значений(имен) через пробел\nДобавочные команды:\n/silent (по умолчанию: {config["default_silent"]})- выполнение команд без записи логов в консоль\n/datareplace (по умолчанию {config["default_datareplace"]})  - замена значений ниток при инициализации файлов')
       print('-' * 50)
     elif '/statistic' == data[:10]:
       print(f'Нитки:\n{nodes}\nкол-во соединений: {connections_amount}\nкол-во маршрутов: {paths_amount}\nкол-во инициализированных файлов: {sum(files_amount)}')
@@ -155,6 +224,13 @@ class Commands:
         data = data.split()
       Commands.statnodes(data, silent)
       print('-' * 50)
+    elif '/stattracks' == data[:11]:
+      data = data[12:]
+      if data == '':
+        data = ['track' + str(i) for i in range(1, paths_amount+1)]
+      else:
+        data = data.split()
+      Commands.stattracks(data, silent)
     elif '/info' == data[:5]:
       data = data[6:]
       if data == '':
@@ -163,13 +239,20 @@ class Commands:
         data = data.split()
       Commands.info(data)
       print('-' * 50)
+    elif '/savenodes' == data[:10]:
+      data = data[11:]
+      save_nodes(data, silent, datareplace)
+      print('-' * 50)
+    elif '/savetracks' == data[:11]:
+      data = data[12:]
+      save_tracks(data, silent, datareplace)
+      print('-' * 50)
     elif data == '':
       print('/help - помощь')
       print('-'*50)
     else:
       Commands.openfile(data, silent)
       print('-' * 50)
-
 
 
 class Node:
@@ -193,26 +276,37 @@ class Node:
     else:
       return 0
 
-  def statistic(self):
-    if len(self.timing) > 0:
-      stats = {}
-      lenght = len(self.timing)
-      total = sum(self.timing)
-      mean = total / lenght
-      stats['среднее арифмитическое'] = mean
-      stats['максимальное'] = max(self.timing)
-      stats['минимальное'] = min(self.timing)
-      stats['среднеквадратическое отклонение'] = (sum([(elem-mean)**2 for elem in self.timing]) / lenght) ** 0.5
-      self.stats = stats
-    else:
-      self.stats = 'Нет данных'
-    return self.stats
-
   def check(self):
     if len(self.connections) > 0 and self.name not in self.connections:
       return 'OK'
     else:
       return 'Error'
+
+  def statistic(self):
+    if len(self.timing) > 0:
+      lenght = len(self.timing)
+      total = sum(self.timing)
+      mean = total / lenght
+      minimum = min(self.timing)
+      maximum = max(self.timing)
+      scope = maximum - minimum
+      total_lin_dev = sum([abs(elem - mean) for elem in self.timing])
+      total_squ_dev = sum([(elem - mean) ** 2 for elem in self.timing])
+      if lenght % 2 == 1:
+        median = self.timing[int(lenght / 2)]
+      else:
+        median = (self.timing[int(lenght / 2)] + self.timing[int(lenght / 2 - 1)]) / 2
+      score = sum([abs(elem) for elem in self.timing])
+      stats = {'сумма': total, 'количество': lenght, 'медиана': median, 'среднее арифметическое': mean,
+               'максимальное': maximum, 'минимальное': minimum, 'размах': scope,
+               'сумма линейных отклонений': total_lin_dev, 'среднее линейное отклонение': total_lin_dev / lenght,
+               'сумма квадратичных отклонений': total_squ_dev,
+               'среднее квадратичое отклонение': (total_squ_dev / lenght) ** 0.5, 'баллы': score}
+      self.stats = stats
+    else:
+      stats = 'Нет данных'
+      self.stats = 'Нет данных'
+    return stats
 
   def __str__(self):
     t = str(self.types)[1:-1].replace('], ', ']\n')
@@ -225,7 +319,7 @@ class Node:
 
 class Pathway:
   def compare(self, addtimming_bool):
-    time = 0
+    time = []
     com = {}
     for station in self.track:
       name = station['name']
@@ -235,23 +329,45 @@ class Pathway:
       types_normal = globals()[name].types
       types_normal = types_normal.get(self.train_type, types_normal['train'])
       t_normal = types_normal[int(station['KPType'])]
-      t = t_normal - t_track
+      t = t_track - t_normal
       com[station['name']] = t
-      time += t
-    self.compare_com = com
-    self.compare_time = time
+      time.append(t)
+    self.station_names.append(name)
+    self.timing = com
+    self.timelist = time
   def __init__(self, data, compare_bool = True, addtimming_bool = True):
     self.id_last_position = int(data[0]['idLastPosition'])
     self.train_type = data[1]['type']
     self.priority = int(data[1]['priority'])
     self.train_number = int(data[1]['trainNumber'])
     self.track = data[3:]
+    self.station_names = []
     if compare_bool == True:
       self.compare(addtimming_bool)
+    self.statistic()
   def __str__(self):
     t = str(self.track)[1:-1].replace('}, ', '}\n')
     return f'номер поезда: {self.train_number}, тип: {self.train_type}, приоритет: {self.priority}\nпуть:\n{t}'
-
+  def statistic(self):
+    if len(self.timelist) > 0:
+      lenght = len(self.timelist)
+      total = sum(self.timelist)
+      mean = total / lenght
+      minimum = min(self.timelist)
+      maximum = max(self.timelist)
+      scope = maximum - minimum
+      total_lin_dev = sum([abs(elem - mean) for elem in self.timelist])
+      total_squ_dev = sum([(elem - mean) ** 2 for elem in self.timelist])
+      if lenght % 2 == 1:
+        median = self.timelist[int(lenght / 2)]
+      else:
+        median = (self.timelist[int(lenght / 2)] + self.timelist[int(lenght / 2 - 1)]) / 2
+      score = sum([abs(elem) for elem in self.timelist])
+      stats = {'сумма':total, 'количество':lenght, 'медиана':median, 'среднее арифметическое':mean, 'максимальное':maximum, 'минимальное':minimum, 'размах':scope, 'сумма линейных отклонений':total_lin_dev, 'среднее линейное отклонение':total_lin_dev/lenght, 'сумма квадратичных отклонений':total_squ_dev, 'среднее квадратичое отклонение':(total_squ_dev/lenght)**0.5, 'баллы':score}
+      self.stats = stats
+    else:
+      self.stats = 'Нет данных'
+    return self.stats
 
 if __name__ == '__main__':
   while True:

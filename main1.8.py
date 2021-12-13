@@ -99,20 +99,43 @@ def save_tracks(path, silent, datareplace):
     mode = 'a'
   start_time = time()
   amount = 0
-  try:
+  total_stats = None
+  if True:
     with open(path, mode, encoding='utf-8') as file:
       if mode == 'a':
         file.write('Имя,Сумма,Количество,Медиана,Среднее арифметическое,Максимум,Минимум,Размах,Сумма линейных отклонений,Среднее линейное отклонение,Сумма квадратичных отклонений,Среднее квадратичое отклонение,Баллы\n')
       for name in tnames:
-        stats = [str(i) for i in globals()[name].stats.values()]
-        line = f'{name},{",".join(stats)}\n'
+        stats = [float(i) for i in globals()[name].stats.values()]
+        print(globals()[name].stats.values())
+        line = f'{name},{",".join(map(str, stats))}\n'
         file.write(line)
         amount += 1
+        print(globals()[name].stats.values())
+        if total_stats == None:
+          total_stats = [[stats[x]] for x in range(12)]
+          print(total_stats)
+        else:
+          for x in range(12):
+            total_stats[x].append(stats[x])
+          print(total_stats)
+      total_stats[0] = sum(map(abs, total_stats[0]))
+      total_stats[1] = sum(total_stats[1])
+      total_stats[2] = total_stats[2][int(amount/2)]
+      total_stats[3] = sum(total_stats[3])/amount
+      total_stats[4] = max(total_stats[4])
+      total_stats[5] = min(total_stats[5])
+      total_stats[6] = total_stats[4] - total_stats[5]
+      total_stats[7] = sum(total_stats[7])
+      total_stats[8] = sum(total_stats[8])/amount
+      total_stats[9] = sum(total_stats[9])
+      total_stats[10] = sum(total_stats[10])/amount
+      total_stats[11] = sum(total_stats[11])
+      file.write(f'Всего,{",".join(map(str, total_stats))}\n')
     prev_save_tracks_path = path
     saves_tracks_amount += 1
     if silent == False:
       print(f'Сохранено {amount} путей')
-  except:
+  else:
     if silent == False:
       print('Ошибка сохранения')
 
